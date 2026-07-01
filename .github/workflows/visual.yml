@@ -1,0 +1,50 @@
+name: VisualDiff
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        theme: [light, dark]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+      
+      - name: Install deps
+        run: |
+          pip install -r requirements.txt
+          playwright install --with-deps chromium
+      
+      - name: Run visual tests
+        run: |
+          pytest -m visual -n 4 --theme=${{ matrix.theme }} --html=report-${{ matrix.theme }}.html --self-contained-html
+      
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-report-${{ matrix.theme }}
+          path: |
+            report-*.html
+            test-results/
+            **/*-actual.png
+            **/*-diff.png
+      
+      - name: Upload baselines on main
+        if: github.ref == 'refs/heads/main' && success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: baselines-${{ matrix.theme }}
+          path: tests/
+          retention-days: 30

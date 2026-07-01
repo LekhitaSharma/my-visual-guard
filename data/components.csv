@@ -1,0 +1,4 @@
+story_id,name,type
+components-button--primary,button,core
+components-button--secondary,button,core
+components-input--default,input,core

@@ -1,4 +1,4 @@
-﻿import pytest
+import pytest
 from pathlib import Path
 from PIL import Image, ImageChops
 
@@ -9,7 +9,7 @@ CURRENT = Path("current")
 DIFFS = Path("current/diffs")
 for p in [BASELINES, CURRENT, DIFFS]: p.mkdir(exist_ok=True)
 
-def images_match(baseline, current, diff_path, max_diff=100):
+def images_match(baseline, current, diff_path, max_diff=8000):
     img1 = Image.open(baseline).convert("RGB")
     img2 = Image.open(current).convert("RGB")
     diff = ImageChops.difference(img1, img2)

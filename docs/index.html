@@ -1,9 +1,9 @@
-Ôªø<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>my-visual-guard ‚Äî Visual Regression Testing</title>
+<title>my-visual-guard ó Visual Regression Testing</title>
 <style>
   :root { --bg:#0b0f14; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; }
   *{box-sizing:border-box}
@@ -32,7 +32,7 @@
     <header>
       <h1>my-visual-guard</h1>
       <div class="sub">Visual Regression Testing That Actually Catches UI Breaks</div>
-      <div class="badge">‚óè CI Passing</div>
+      <div class="badge">? CI Passing</div>
       <div class="links">
         <a class="btn" href="https://github.com/LekhitaSharma/my-visual-guard">View on GitHub</a>
         <a class="btn" href="https://github.com/LekhitaSharma/my-visual-guard/actions">Latest CI Run</a>
@@ -42,12 +42,12 @@
     <section class="card">
       <h3>Overview</h3>
       <p>I broke button padding in a side project and didn't notice for 2 weeks. Built this so it never happens again.</p>
-      <p class="muted">A lightweight framework that screenshots your UI in light/dark mode across mobile, tablet, and desktop ‚Äî and fails CI if even 150 pixels change.</p>
+      <p class="muted">A lightweight framework that screenshots your UI in light/dark mode across mobile, tablet, and desktop ó and fails CI if even 150 pixels change.</p>
     </section>
 
     <section style="margin-top:24px">
       <div class="grid-3">
-        <div class="card"><h3>1. Capture</h3><p class="muted">Playwright takes 6 parallel screenshots: 2 themes √ó 3 viewports.</p></div>
+        <div class="card"><h3>1. Capture</h3><p class="muted">Playwright takes 6 parallel screenshots: 2 themes ◊ 3 viewports.</p></div>
         <div class="card"><h3>2. Compare</h3><p class="muted">Pillow computes pixel diff and saves a red diff image.</p></div>
         <div class="card"><h3>3. Block</h3><p class="muted">GitHub Actions fails the PR and uploads diffs.</p></div>
       </div>
@@ -57,16 +57,16 @@
       <h2 style="text-align:center">Live Baselines</h2>
       <p class="muted" style="text-align:center">Click any image to open full-size. These are the Linux-generated goldens used in CI.</p>
       <div class="gallery">
-        <a href="baselines/todo-light-375.png" target="_blank" class="shot"><img src="baselines/todo-light-375.png" alt="light 375"><figcaption>light ‚Ä¢ 375px</figcaption></a>
-        <a href="baselines/todo-light-768.png" target="_blank" class="shot"><img src="baselines/todo-light-768.png" alt="light 768"><figcaption>light ‚Ä¢ 768px</figcaption></a>
-        <a href="baselines/todo-light-1440.png" target="_blank" class="shot"><img src="baselines/todo-light-1440.png" alt="light 1440"><figcaption>light ‚Ä¢ 1440px</figcaption></a>
-        <a href="baselines/todo-dark-375.png" target="_blank" class="shot"><img src="baselines/todo-dark-375.png" alt="dark 375"><figcaption>dark ‚Ä¢ 375px</figcaption></a>
-        <a href="baselines/todo-dark-768.png" target="_blank" class="shot"><img src="baselines/todo-dark-768.png" alt="dark 768"><figcaption>dark ‚Ä¢ 768px</figcaption></a>
-        <a href="baselines/todo-dark-1440.png" target="_blank" class="shot"><img src="baselines/todo-dark-1440.png" alt="dark 1440"><figcaption>dark ‚Ä¢ 1440px</figcaption></a>
+        <a href="baselines/todo-light-375.png" target="_blank" class="shot"><img src="baselines/todo-light-375.png" alt="light 375"><figcaption>light ï 375px</figcaption></a>
+        <a href="baselines/todo-light-768.png" target="_blank" class="shot"><img src="baselines/todo-light-768.png" alt="light 768"><figcaption>light ï 768px</figcaption></a>
+        <a href="baselines/todo-light-1440.png" target="_blank" class="shot"><img src="baselines/todo-light-1440.png" alt="light 1440"><figcaption>light ï 1440px</figcaption></a>
+        <a href="baselines/todo-dark-375.png" target="_blank" class="shot"><img src="baselines/todo-dark-375.png" alt="dark 375"><figcaption>dark ï 375px</figcaption></a>
+        <a href="baselines/todo-dark-768.png" target="_blank" class="shot"><img src="baselines/todo-dark-768.png" alt="dark 768"><figcaption>dark ï 768px</figcaption></a>
+        <a href="baselines/todo-dark-1440.png" target="_blank" class="shot"><img src="baselines/todo-dark-1440.png" alt="dark 1440"><figcaption>dark ï 1440px</figcaption></a>
       </div>
     </section>
 
-    <footer>Built by Lekhita Sharma ‚Ä¢ 2026</footer>
+    <footer>Built by Lekhita Sharma ï 2026<section class="card" style="margin-top:32px"><h3>It Actually Works</h3><p class="muted">Intentionally broke the background to red. CI failed in 42s and uploaded this diff:</p><a href="baselines/diff-example.png" target="_blank"><img src="baselines/diff-example.png" style="width:100%;border-radius:8px;margin-top:12px;border:1px solid #1f2937"></a><p style="margin-top:8px"><a href="https://github.com/LekhitaSharma/my-visual-guard/actions" style="color:#86efac">See the failing run ?</a></p></section></footer>
   </div>
 </body>
 </html>

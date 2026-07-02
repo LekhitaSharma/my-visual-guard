@@ -28,7 +28,6 @@ def test_visual(page, goto_demo, theme, viewport_width, name, path, selector):
     current = CURRENT / filename
     diff_img = DIFFS / f"diff-{filename}"
     
-    page.evaluate("document.body.style.background='red'")
     page.screenshot(path=str(current), full_page=True)
     
     if not baseline.exists():

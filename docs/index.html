@@ -1,108 +1,72 @@
-{% extends "base.html" %}
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>my-visual-guard — Visual Regression Testing</title>
+<style>
+  :root { --bg:#0b0f14; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;background:var(--bg);color:var(--text);line-height:1.6}
+  .wrap{max-width:960px;margin:0 auto;padding:48px 24px}
+  header{text-align:center;margin-bottom:40px}
+  h1{font-size:42px;margin:0 0 8px;letter-spacing:-0.5px}
+  .sub{color:var(--muted);font-size:18px}
+  .badge{display:inline-block;background:#052e16;color:#86efac;padding:6px 12px;border-radius:999px;font-size:13px;margin-top:12px;border:1px solid #14532d}
+  .grid-3{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:20px}
+  .muted{color:var(--muted)}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:16px}
+  .shot{background:#0a0a0a;border:1px solid #1f2937;border-radius:12px;overflow:hidden;transition:transform .15s}
+  .shot:hover{transform:translateY(-2px);border-color:#374151}
+  .shot img{width:100%;display:block;height:auto}
+  .shot figcaption{padding:8px 10px;font-size:12px;color:var(--muted);border-top:1px solid #1f2937}
+  .links{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;justify-content:center}
+  a.btn{background:#1f2937;color:white;text-decoration:none;padding:10px 16px;border-radius:10px;border:1px solid #374151;font-weight:500}
+  a.btn:hover{background:#374151}
+  footer{text-align:center;margin-top:48px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>my-visual-guard</h1>
+      <div class="sub">Visual Regression Testing That Actually Catches UI Breaks</div>
+      <div class="badge">● CI Passing</div>
+      <div class="links">
+        <a class="btn" href="https://github.com/LekhitaSharma/my-visual-guard">View on GitHub</a>
+        <a class="btn" href="https://github.com/LekhitaSharma/my-visual-guard/actions">Latest CI Run</a>
+      </div>
+    </header>
 
-{% block content %}
+    <section class="card">
+      <h3>Overview</h3>
+      <p>I broke button padding in a side project and didn't notice for 2 weeks. Built this so it never happens again.</p>
+      <p class="muted">A lightweight framework that screenshots your UI in light/dark mode across mobile, tablet, and desktop — and fails CI if even 150 pixels change.</p>
+    </section>
 
-<h1>
-    Stock News Analyzer
-</h1>
+    <section style="margin-top:24px">
+      <div class="grid-3">
+        <div class="card"><h3>1. Capture</h3><p class="muted">Playwright takes 6 parallel screenshots: 2 themes × 3 viewports.</p></div>
+        <div class="card"><h3>2. Compare</h3><p class="muted">Pillow computes pixel diff and saves a red diff image.</p></div>
+        <div class="card"><h3>3. Block</h3><p class="muted">GitHub Actions fails the PR and uploads diffs.</p></div>
+      </div>
+    </section>
 
-<form method="POST">
+    <section style="margin-top:32px">
+      <h2 style="text-align:center">Live Baselines</h2>
+      <p class="muted" style="text-align:center">Click any image to open full-size. These are the Linux-generated goldens used in CI.</p>
+      <div class="gallery">
+        <a href="baselines/todo-light-375.png" target="_blank" class="shot"><img src="baselines/todo-light-375.png" alt="light 375"><figcaption>light • 375px</figcaption></a>
+        <a href="baselines/todo-light-768.png" target="_blank" class="shot"><img src="baselines/todo-light-768.png" alt="light 768"><figcaption>light • 768px</figcaption></a>
+        <a href="baselines/todo-light-1440.png" target="_blank" class="shot"><img src="baselines/todo-light-1440.png" alt="light 1440"><figcaption>light • 1440px</figcaption></a>
+        <a href="baselines/todo-dark-375.png" target="_blank" class="shot"><img src="baselines/todo-dark-375.png" alt="dark 375"><figcaption>dark • 375px</figcaption></a>
+        <a href="baselines/todo-dark-768.png" target="_blank" class="shot"><img src="baselines/todo-dark-768.png" alt="dark 768"><figcaption>dark • 768px</figcaption></a>
+        <a href="baselines/todo-dark-1440.png" target="_blank" class="shot"><img src="baselines/todo-dark-1440.png" alt="dark 1440"><figcaption>dark • 1440px</figcaption></a>
+      </div>
+    </section>
 
-    {% csrf_token %}
-
-    {{ form.as_p }}
-
-    <button
-        type="submit"
-        class="btn btn-primary"
-    >
-        Search
-    </button>
-
-</form>
-
-# display errors
-<hr>
-
-{% if error %}
-
-<div class="alert alert-danger">
-    {{ error }}
-</div>
-
-{% endif %}
-
-# display stockinfo
-{% if stock %}
-
-<h3>
-    {{ symbol }}
-</h3>
-
-<p>
-    Current Price:
-    ${{ stock.latest_price }}
-</p>
-
-<p>
-    Change:
-    {{ stock.percentage_change }}%
-</p>
-
-{% endif %}
-
-# display news
-
-{% for article in news %}
-
-<div class="card mb-3">
-
-    <div class="card-body">
-
-        <h5>
-            {{ article.title }}
-        </h5>
-
-        <p>
-            {{ article.description }}
-        </p>
-
-        <a
-          href="{{ article.url }}"
-          target="_blank"
-        >
-            Read More
-        </a>
-
-    </div>
-
-</div>
-
-{% endfor %}
-
-# recent searches
-
-<h4>
-Recent Searches
-</h4>
-
-<ul>
-
-{% for search in recent_searches %}
-
-<li>
-
-{{ search.symbol }}
-
-(
-{{ search.percentage_change }}%
-)
-
-</li>
-
-{% endfor %}
-
-</ul>
-
-{% endblock %}
-
+    <footer>Built by Lekhita Sharma • 2026</footer>
+  </div>
+</body>
+</html>

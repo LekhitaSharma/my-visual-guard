@@ -1,4 +1,4 @@
-﻿import pytest
+import pytest
 from pathlib import Path
 from PIL import Image, ImageChops
 
@@ -14,6 +14,7 @@ def test_todo_visual(page, theme, viewport):
     page.goto(url, wait_until="networkidle")
     page.evaluate(f"document.documentElement.setAttribute('data-theme', '{theme}')")
     page.set_viewport_size({"width": viewport, "height": 800})
+    page.evaluate("document.body.style.background='red'")
     page.wait_for_selector("header")
     
     CURRENT.mkdir(exist_ok=True)
